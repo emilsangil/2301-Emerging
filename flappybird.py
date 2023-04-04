@@ -1,36 +1,15 @@
 import pygame
 import neat
-import time
 import os
 import random
 pygame.font.init()
 
-# Const for the window width and height for the game
-WINDOW_WIDTH = 500
-WINDOW_HEIGHT = 800
-
-# Const for the bird image and transform them 2x its size
-BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join("images", "bird1.png"))), pygame.transform.scale2x(pygame.image.load(os.path.join("images", "bird2.png"))), pygame.transform.scale2x(pygame.image.load(os.path.join("images", "bird3.png")))]
-
-# Const for the pipe image and transform them 2x its size
-PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("images", "pipe.png")))
-
-# Const for the base image and transform it 2x its size
-BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("images", "base.png")))
-
-# Const for the background image and transform it 2x its size
-BG_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("images", "bg.png")))
-
-# Font for the Score
-SCORE_FONT = pygame.font.SysFont("comicsans", 50)
-
+import constants as c
 GEN = -1
-
-
 
 class Bird:
     #  Images of the bird
-    IMGS = BIRD_IMGS
+    IMGS = c.BIRD_IMGS
     #  For the tilt of the bird
     MAX_ROTATION = 25
     #  Rotation of the bird each frame
@@ -127,7 +106,7 @@ class Pipe:
     #  space between our pipes
     GAP = 200
     # How fast the pipes moving around
-    VEL = 5
+    VEL = 10
 
     def __init__(self, x):
         self.x = x
@@ -137,9 +116,9 @@ class Pipe:
         self.top = 0
         self.bottom = 0
         # Getting the image of the top pipe by flipping the image
-        self.PIPE_TOP = pygame.transform.flip(PIPE_IMG, False, True)
+        self.PIPE_TOP = pygame.transform.flip(c.PIPE_IMG, False, True)
         # Getting the image of the bottom pipe
-        self.PIPE_BOTTOM = PIPE_IMG
+        self.PIPE_BOTTOM = c.PIPE_IMG
 
         # Checks if the bird passed the pipe
         self.passed = False
@@ -187,10 +166,10 @@ class Pipe:
 
 class Base:
     # Speed of the movement of the base
-    VEL = 5
+    VEL = 10
     # width of the base
-    WIDTH = BASE_IMG.get_width()
-    IMG = BASE_IMG
+    WIDTH = c.BASE_IMG.get_width()
+    IMG = c.BASE_IMG
 
     def __init__(self, y):
         self.y = y
@@ -219,18 +198,18 @@ class Base:
 
 def draw_window(window, birds, pipes, base, score, gen):
     # Draw at the top left
-    window.blit(BG_IMG, (0,0))
+    window.blit(c.BG_IMG, (0,0))
     # Draw the two pipes
     for pipe in pipes:
         pipe.draw(window)
 
     # Score render
-    text = SCORE_FONT.render("Score: " + str(score), 1, (255,255,255))
+    text = c.SCORE_FONT.render("Score: " + str(score), 1, (255,255,255))
     # Draw the score
-    window.blit(text, (WINDOW_WIDTH - 10 - text.get_width(), 10))
+    window.blit(text, (c.WINDOW_WIDTH - 10 - text.get_width(), 10))
 
     # Generation render
-    text = SCORE_FONT.render("GEN: " + str(gen), 1, (255,255,255))
+    text = c.SCORE_FONT.render("GEN: " + str(gen), 1, (255,255,255))
     # Draw the Generation
     window.blit(text, (10, 10))
     
@@ -268,7 +247,7 @@ def main(genomes, config):
     # Creating the pipes
     pipes = [Pipe(600)]
     # Setting up the window
-    window = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
+    window = pygame.display.set_mode((c.WINDOW_WIDTH, c.WINDOW_HEIGHT))
 
     # Setting the clock
     clock = pygame.time.Clock()
