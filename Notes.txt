@@ -1,0 +1,43 @@
+Neat Algorithm
+
+Inputs needed:
+- bird.y
+- Top Pipe
+- Bottom pipe
+
+Outputs needed:
+- Jump
+- Not Jump
+
+Activation Function
+- TanH(hyperbolic tangeant)
+
+Population Size (Nodes you want to use)
+- 100 ( how many birds you want to use)
+
+Fitness Function (fit function)
+- evaluate birds growth
+- get the best bird on each population and mutate and train them
+- the birds that has the most frames
+- Distance of the birds
+
+Max Generation
+- it will re run the game for example 30 times and if there is still no best birds then cut the program
+
+
+fitness_criterion
+- you can choose from min max
+- function to get the best bird if you choose max
+
+fitness_threshold
+- how many birds to stop the program
+
+pop_size
+- population of the birds you want
+
+reset_on_extinction
+- reset the species
+
+Genome = bird
+nodes = input and Output
+gene = connects the nodes
